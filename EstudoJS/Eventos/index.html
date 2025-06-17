@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Seminário Prático de Eventos JS</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .box { width: 300px; height: 100px; border: 2px solid black; background-color: lightgray;
+               text-align: center; line-height: 100px; margin-top: 10px; }
+        input { margin-top: 10px; padding: 5px; }
+    </style>
+</head>
+<body onload="paginaCarregada()">
+    <h1>Eventos Comuns em JavaScript</h1>
+    <p id="info">Aqui aparecerão as informações dos eventos.</p>
+
+    <!-- Evento onclick -->
+    <button onclick="exibirAlerta()">Clique em Mim!</button>
+
+    <!-- Eventos onmouseover, onmouseout e ondblclick -->
+    <div class="box"
+         onmouseover="mudarCorFundo(this, 'lightblue')"
+         onmouseout="mudarCorFundo(this, 'lightgray')"
+         ondblclick="mudarBorda(this)">
+         Passe o mouse sobre mim
+    </div>
+
+    <!-- Input com onchange -->
+    <input type="text" id="campoTexto" onchange="mostrarTexto()" placeholder="Digite algo...">
+
+    <script>
+        const infoParagraph = document.getElementById('info');
+
+        function paginaCarregada() {
+            infoParagraph.textContent = 'A página terminou de carregar!';
+        }
+
+        function exibirAlerta() {
+            document.querySelector("h1").textContent = "Botão Clicado!";
+            infoParagraph.textContent = 'Evento "onclick" disparado.';
+        }
+
+        function mudarCorFundo(elemento, cor) {
+            elemento.style.backgroundColor = cor;
+            if (cor === 'lightblue') {
+                infoParagraph.textContent = 'Evento "onmouseover" ativado.';
+            } else {
+                infoParagraph.textContent = 'Evento "onmouseout" ativado.';
+            }
+        }
+
+        function mostrarTexto() {
+            const texto = document.getElementById("campoTexto").value;
+            document.querySelector(".box").textContent = texto;
+        }
+
+        function mudarBorda(elemento) {
+            elemento.style.border = "2px solid red";
+            infoParagraph.textContent = 'Evento "ondblclick" ativado!';
+        }
+    </script>
+</body>
+</html>
